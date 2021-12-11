@@ -3,10 +3,16 @@
 W tym zadaniu należy zbudować prosty plik docker-compose.yml, który
 pozwoli na uruchomienie znanej z innych zajęć, uslugi LEMP wraz z phpMyAdmin. Stack
 LEMP składa się z następujących usług składowych: 
+
 ---- L – dla Linux; 
+
 ---- E – dla Nginx; 
+
 ---- M – dla MySQL; 
+
 ---- P – dla PHP. 
+
+
 Wobec tego projekt zawiera cztery kontenery (usługi): 
 - jeden kontener dla Nginx; 
 - jeden kontener dla PHP (PHP-FPM) https://php-fpm.org/ ; 
