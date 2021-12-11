@@ -1,2 +1,2 @@
-#pobierz najnowszy obraz php
+#pobierz obraz php
 FROM php:5-fpm
