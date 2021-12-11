@@ -21,8 +21,11 @@ backend oraz frontend. Nginx ma wystawiony na świat zewnętrzy port 6666.
 - serwer phpMyAdmin ma być dostępny na porcie 6001 i powinno być możliwe
 zalogowanie się do niego i założenie testowej bazy.
 
-a) Uruchomienie stacka: `docker compose up -d`.
-b+c) Uruchomienie phpmyadmin i utworzenie testowej bazy danych: `docker exec zadanie2_mysql_1 mysql --execute="CREATE DATABASE test" --user=root --password=root`.
+## a)
+Uruchomienie stacka: `docker compose up -d`.
+
+## b+c)
+Uruchomienie phpmyadmin i utworzenie testowej bazy danych: `docker exec zadanie2_mysql_1 mysql --execute="CREATE DATABASE test" --user=root --password=root`.
 
 Plik ilustrujacy strukture projektu: 
 ![docker-compose.yml](https://github.com/bezqyczekpl/BazaDanych/docker-compose.png?raw=true)
