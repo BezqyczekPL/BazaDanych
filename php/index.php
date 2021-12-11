@@ -1,0 +1,3 @@
+<?php 
+echo "Wszystko dziala!";
+?>

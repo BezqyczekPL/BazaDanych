@@ -1,0 +1,71 @@
+#ustawienie wersji 3 docker compose
+version : "3"               
+
+#uslugi w projekcie
+services:
+
+  #usluga nginx
+  nginx: 
+    #zbuduj kontener nginx na podstawie dockerfile w tym katalogu                     
+    build: "./obrazy/nginx" 
+    #mapuj port wyswietlajacy plik php
+    ports:                    
+      - "6666:80"
+    #przylacz do sieci frontend i backend
+    networks:                
+      - frontend
+      - backend
+    #ustaw wolumeny dla strony internetowej i jej konfiguracji
+    volumes:                 
+      - ./php:/php
+      - ./site.conf:/etc/nginx/conf.d/default.conf
+
+  #usluga php
+  php: 
+    #zbuduj kontener php na podstawie dockerfile w tym katalogu                        
+    build: "./obrazy/php"  
+    #przylacz do sieci backend
+    networks:               
+      - backend
+    #ustaw wolumen dla strony internetowej (w php)  
+    volumes:                
+      - ./php:/php
+
+  
+
+    
+  #usluga mysql
+  mysql:
+    #zbuduj kontener mysql na podstawie dockerfile w tym katalogu                    
+    build: "./obrazy/mysql"
+    #przylacz do sieci backend
+    networks:               
+      - backend
+    #ustaw zmienne srodowiskowe
+    environment:
+      #ustawienie hasla dla uzytkownika root
+      - MYSQL_ROOT_PASSWORD=root 
+      - MYSQL_HOST=localhost
+    #ustaw wolumen dla bazy danych
+    volumes:                
+      - ./database:/var/lib/mysql 
+
+
+       #usluga phpmyadmin
+  phpmyadmin:            
+    #zbuduj kontener phpmyadmin na podstawie dockerfile w tym katalogu   
+    build: "./obrazy/phpmyadmin"  
+    #mapuj port uruchamiajacy baze danych phpmyadmin
+    ports:
+      - "6001:80"
+    #polaczenie z baza danych
+    links:
+      - 'mysql:db'
+    #przylacz do sieci backend
+    networks:               
+      - backend
+ 
+#utworzenie sieci backend i frontend
+networks:                     
+  backend:
+  frontend:
